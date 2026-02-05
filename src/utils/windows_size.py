@@ -29,3 +29,22 @@ def windows_surface(screen, width, height):
         draw_rect = pygame.Rect(x, y, scaled_width, scaled_height)
     
     return scene_surface, draw_rect, scale_factor
+
+def pos_on_screen(screen, width, height, x, y):
+    scene_surface, draw_rect, scale_factor = windows_surface(screen, width, height)
+
+    screen_x = int(x * scale_factor) + draw_rect.x
+    screen_y = int(y * scale_factor) + draw_rect.y
+    
+    return screen_x, screen_y
+
+def screen_to_virtual(screen, width, height, screen_x, screen_y):
+    scene_surface, draw_rect, scale_factor = windows_surface(screen, width, height)
+
+    if not draw_rect.collidepoint(screen_x, screen_y):
+        return None
+
+    x = int((screen_x - draw_rect.x) / scale_factor)
+    y = int((screen_y - draw_rect.y) / scale_factor)
+    
+    return x, y
