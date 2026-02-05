@@ -13,3 +13,4 @@ def get_image_path(filename: str) -> Path:
 
 def get_font_path(filename: str) -> Path:
     return get_assets_path() / "fonts" / filename
+
