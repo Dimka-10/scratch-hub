@@ -26,6 +26,7 @@ COLORS = {
     'up_menu':(40, 40, 50),
     'object_menu':(30, 40, 50),
     'projects_menu':(50, 40, 30),
+    'projects_bg':(235, 56, 149),
 }
 
 SIZES = {

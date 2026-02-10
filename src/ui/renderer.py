@@ -509,6 +509,25 @@ def draw_button_with_icon(scene_surface, rect, text, icon_name=None,
     
     return btn_rect
 
+def get_text_size(text, font_size=18, font_path=None):
+    temp_surface = pygame.Surface((1, 1), pygame.SRCALPHA)
+
+    scaled_font_size = _scale_value(font_size)
+    
+    if font_path:
+        font = pygame.font.Font(font_path, scaled_font_size)
+    else:
+        font = pygame.font.Font(None, scaled_font_size)
+
+    text_surface = font.render(text, True, (255, 255, 255))
+    text_width = text_surface.get_width()
+    text_height = text_surface.get_height()
+
+    virtual_width = int(text_width / _current_scale) if _current_scale > 0 else text_width
+    virtual_height = int(text_height / _current_scale) if _current_scale > 0 else text_height
+    
+    return virtual_width, virtual_height
+
 __all__ = [
     'update_scene',
     'draw_triangle',
@@ -525,4 +544,5 @@ __all__ = [
     'draw_background',
     'draw_rounded_image',
     'draw_button_with_icon',
+    'get_text_size',
 ]
